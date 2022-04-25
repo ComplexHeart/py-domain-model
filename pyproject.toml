@@ -1,0 +1,65 @@
+[tool.poetry]
+name = "complexheart-models"
+version = "0.1.0"
+description = "Domain model toolset to properly build Value Objects, Entities, Aggregates, and Services."
+authors = [
+    "Unay Santisteban <usantisteban@othercode.es>",
+]
+license = "Apache-2.0"
+readme = "./README.md"
+repository = "https://github.com/ComplexHeart/py-models"
+packages = [
+    { include = "complexheart" },
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+]
+keywords = [
+    "models",
+    "value objects",
+    "entities",
+    "aggregates",
+    "invariants",
+    "domain events",
+]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+
+[tool.poetry.dev-dependencies]
+flake8 = "*"
+coverage = { extras = ["toml"], version = "*" }
+pytest = "^7.0"
+pytest-cov = "*"
+pytest-mock = "*"
+
+[build-system]
+requires = ["poetry-core>=1.0.0", "setuptools>=42"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+testpaths = "tests"
+addopts = "--cov=complexheart --cov-report=term-missing:skip-covered --cov-report=html --cov-report=xml"
+
+[tool.coverage.run]
+omit = ["tests/*", "venv*/*", "setup.py"]
+relative_files = true
+branch = true
+
+[tool.coverage.report]
+exclude_lines = [
+    "pragma: no cover",
+    "def __str__",
+    "def __repr__",
+    "import",
+    "raise NotImplementedError",
+    "if __name__ == .__main__.:",
+]
+
+[tool.coverage.html]
+skip_covered = true
+
