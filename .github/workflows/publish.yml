@@ -1,0 +1,33 @@
+name: Publish
+
+on:
+  release:
+    types: [ published ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Source Code
+        uses: actions/checkout@v2
+
+      - name: Extract Tag Name
+        uses: actions/github-script@v3
+        id: tag
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          result-encoding: string
+          script: |
+            return context.payload.ref.replace(/refs\/tags\//, '')
+
+      - name: Build Package
+        run: |
+          poetry version ${{ steps.tag.outputs.result }}
+          poetry build
+
+      - name: Deploy to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          user: __token__
+          password: ${{ secrets.PYPI_API_TOKEN }}
