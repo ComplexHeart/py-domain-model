@@ -1,9 +1,9 @@
 [tool.poetry]
-name = "complexheart-models"
+name = "complex-heart-domain-model"
 version = "0.1.0"
 description = "Domain model toolset to properly build Value Objects, Entities, Aggregates, and Services."
 authors = [
-    "Unay Santisteban <usantisteban@othercode.es>",
+    "Unay Santisteban <usantisteban@othercode.io>",
 ]
 license = "Apache-2.0"
 readme = "./README.md"
@@ -17,6 +17,7 @@ classifiers = [
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
 ]
 keywords = [
     "models",
